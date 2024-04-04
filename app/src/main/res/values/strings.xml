@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Fly</string>
+    <string name="logo">logo</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="dev">Devesh</string>
+    <string name="samplemsg">This is  sent message </string>
+    <string name="email">Email </string>
+    <string name="password">Password </string>
+    <string name="login">Login </string>
+    <string name="Or">Or </string>
+    <string name="SignUp">SignUp </string>
+    <string name="Name">Name </string>
+
+
+    <string name="log_out">Log out</string>
+    <string name="send_a_message">Send a message</string>
+</resources>

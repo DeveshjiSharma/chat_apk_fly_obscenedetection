@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "286892831498",
+    "project_id": "jai-shree-ram-1254a",
+    "storage_bucket": "jai-shree-ram-1254a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286892831498:android:b6e05e3c5203951d7340f3",
+        "android_client_info": {
+          "package_name": "com.example.fly"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyYsDUJxPwlkFB04iScsjfQCGxG9Ykijo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

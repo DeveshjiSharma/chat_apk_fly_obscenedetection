@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Fly" parent="Theme.AppCompat.DayNight.DarkActionBar">
+
+         <item name="colorPrimary">@color/orange</item>
+         <item name="colorPrimaryVariant">@color/orange</item>
+    </style>
+
+    <style name="Theme.Fly" parent="Base.Theme.Fly" />
+</resources>
