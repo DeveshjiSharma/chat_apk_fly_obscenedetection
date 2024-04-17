@@ -33,7 +33,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
 import java.io.File
 import java.io.IOException
-import java.util.concurrent.TimeUnit
+
 
 
 @Suppress("DEPRECATION")
@@ -228,7 +228,7 @@ class ChatActivity : AppCompatActivity() {
                 )
                 .build()
             val request = Request.Builder()
-                .url("http://192.168.194.19:3001/analyze")
+                .url("https://duckling-crack-oddly.ngrok-free.app//analyze")
                 .post(requestBody)
                 .build()
 
@@ -241,7 +241,7 @@ class ChatActivity : AppCompatActivity() {
                             "${e.stackTraceToString()} Failed",
                             Toast.LENGTH_SHORT
                         ).show()
-                        // Invoke callback with empty string on failure
+
                         callback("")
                     }
                 }
@@ -259,7 +259,7 @@ class ChatActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
-                        // Invoke callback with response body
+
                         callback(responseBody)
                     }
                 }
@@ -267,7 +267,7 @@ class ChatActivity : AppCompatActivity() {
         } ?: run {
             runOnUiThread {
                 Toast.makeText(this@ChatActivity, " Failed", Toast.LENGTH_SHORT).show()
-                // Invoke callback with empty string when input stream is null
+
                 callback("")
             }
         }
@@ -285,7 +285,7 @@ class ChatActivity : AppCompatActivity() {
         """.trimIndent()
 
         val request=Request.Builder()
-            .url("http://192.168.194.19:3001/print_phone_number")
+            .url("https://duckling-crack-oddly.ngrok-free.app//print_phone_number")
             .post(jsonBody.toRequestBody(JSON))
             .build()
 
@@ -293,7 +293,6 @@ class ChatActivity : AppCompatActivity() {
             override fun onFailure(call: Call, e: IOException) {
                 Log.d("ErrorWhile Calling msg api", e.printStackTrace().toString())
             }
-
             override fun onResponse(call: Call, response: Response) {
                 if(response.isSuccessful){
                     val responseBody=response.body?.string()
