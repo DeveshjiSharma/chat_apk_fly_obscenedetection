@@ -23,15 +23,17 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import okhttp3.Call
 import okhttp3.Callback
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
 import java.io.File
 import java.io.IOException
-import java.util.Locale
+import java.util.concurrent.TimeUnit
 
 
 @Suppress("DEPRECATION")
@@ -148,9 +150,7 @@ class ChatActivity : AppCompatActivity() {
                          Log.d("err", response.length.toString())
                      }
                     if (response.contains( "false")) {
-
                             Toast.makeText(this@ChatActivity,"Inside uploading",Toast.LENGTH_LONG).show();
-
                     storage.putFile(selectedUri).addOnSuccessListener { taskSnapshot ->
                         taskSnapshot.storage.downloadUrl.addOnSuccessListener { uri ->
                             val imageUrl = uri.toString()
@@ -198,7 +198,11 @@ class ChatActivity : AppCompatActivity() {
                             })
                     }
                     }else{
-                        Toast.makeText(this,"Behave",Toast.LENGTH_SHORT).show()
+                       messagereq()
+                       runOnUiThread {
+                           Toast.makeText(this,"Behave",Toast.LENGTH_SHORT).show()
+                       }
+
                     }
 
                 }
@@ -213,6 +217,7 @@ class ChatActivity : AppCompatActivity() {
             tempFile.outputStream().use { output ->
                 input.copyTo(output)
             }
+
             val mediaType = "image/jpeg".toMediaTypeOrNull()
             val requestBody = MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
@@ -223,7 +228,7 @@ class ChatActivity : AppCompatActivity() {
                 )
                 .build()
             val request = Request.Builder()
-                .url("http://192.168.175.19:3001/analyze")
+                .url("http://192.168.194.19:3001/analyze")
                 .post(requestBody)
                 .build()
 
@@ -266,6 +271,38 @@ class ChatActivity : AppCompatActivity() {
                 callback("")
             }
         }
+    }
+
+
+    private fun messagereq(){
+        client= OkHttpClient()
+
+        val JSON="application/json; charset=utf-8".toMediaType()
+        val jsonBody="""
+            {
+            "phone_number":"+917738874661"
+            }
+        """.trimIndent()
+
+        val request=Request.Builder()
+            .url("http://192.168.194.19:3001/print_phone_number")
+            .post(jsonBody.toRequestBody(JSON))
+            .build()
+
+        client.newCall(request).enqueue(object : Callback{
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d("ErrorWhile Calling msg api", e.printStackTrace().toString())
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                if(response.isSuccessful){
+                    val responseBody=response.body?.string()
+                    Log.d("API Response", responseBody ?: "Empty response body")
+                } else {
+                    Log.e("API Error", "Failed to make request: ${response.code}")
+                }
+            }
+        })
     }
 
 //    private fun uploadImagetoapi(imageUri: Uri):String {

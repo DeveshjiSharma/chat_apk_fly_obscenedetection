@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fly.databinding.ActivityHomeBinding
@@ -48,7 +49,9 @@ class Home_Activity : AppCompatActivity() {
                 adapter.notifyDataSetChanged()
             }
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+             runOnUiThread{
+                 Toast.makeText(this@Home_Activity,"Database accessed failed",Toast.LENGTH_SHORT).show()
+             }
             }
         })
     }
