@@ -37,7 +37,6 @@ class Home_Activity : AppCompatActivity() {
         userRecyclerView.adapter=adapter
 
         database.child("Users").addValueEventListener(object:ValueEventListener{
-
             override fun onDataChange(snapshot: DataSnapshot) {
                 userList.clear()
               for(postSnapshot in snapshot.children){
@@ -45,15 +44,12 @@ class Home_Activity : AppCompatActivity() {
                   if(mauth.currentUser?.uid!=currentUser?.uid){
                       userList.add(currentUser!!)
                   }
-
               }
                 adapter.notifyDataSetChanged()
             }
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
         })
     }
 
